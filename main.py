@@ -248,6 +248,7 @@ while not window_should_close():
                     elif specific_operation == "Rotate":
                         interval = settings_data["GridSort"]["RotateInterval"]
                         draw_text(operation_data["Direction"] + " 90 Degrees", int((RESOLUTION_X / 2) - measure_text(operation_data["Direction"] + " 90 Degrees", 50) / 2), 50, 50, WHITE)
+                    draw_text(str(current_operation), int((RESOLUTION_X / 2) - (measure_text(str(current_operation), 50) / 2)), int((RESOLUTION_Y / 2) - (measure_text(str(current_operation), 50) / 2)), 50, WHITE)
                     if get_time() - operation_clock > interval:
                         current_operation += 1
                         operation_clock = get_time()
