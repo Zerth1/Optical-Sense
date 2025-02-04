@@ -206,6 +206,7 @@ while not window_should_close():
                             else:
                                 draw_rectangle(int((RESOLUTION_X / 2) - 150 - cell_size - ((cell_size + line_gap) * (grid_size - i - 1))), int((RESOLUTION_Y / 2) + ((cell_size + line_gap) * (j - (grid_size / 2)))), cell_size, cell_size, PURPLE)
                     current_position = get_mouse_position()
+                    break_outer_loop = False
                     for i in range(grid_size):
                         for j in range(grid_size):
                             original_index = (i * grid_size) + j
@@ -217,6 +218,12 @@ while not window_should_close():
                                 if check_collision_point_rec(current_position, Rectangle(int((RESOLUTION_X / 2) + 150 + ((cell_size + line_gap) * i)), int((RESOLUTION_Y / 2) + ((cell_size + line_gap) * (j - (grid_size / 2)))), cell_size, cell_size)):
                                     if output_permutation[transposed_review_matrix[review_id - 1]] == translated_index:
                                         review_id += 1
+                                    else:
+                                        break_outer_loop = True
+                                        reset_game()
+                                        break
+                        if break_outer_loop:
+                            break
                     if review_id == math.pow(settings_data["GridSort"]["GridSize"], 2) + 1:
                         reset_game()
                 else:
